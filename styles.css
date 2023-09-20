@@ -1,0 +1,15 @@
+.container {
+    width: 600px;
+    height: 600px;
+}
+
+.divRow {
+    background-color: lightgray;
+/*    border: 1px solid black; */
+    display: flex;
+}
+
+.divColumn {
+/*    border: 1px solid black; */
+    flex: 1;
+}
