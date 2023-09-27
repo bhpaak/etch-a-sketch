@@ -1,10 +1,21 @@
 .container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center; 
+    height: 100vh
+}
+
+.sketchpad {
     width: 600px;
     height: 600px;
+    border: 30px solid red; 
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px lightgray;
 }
 
 .divRow {
-    background-color: lightgray;
+    background-color: white;
 /*    border: 1px solid black; */
     display: flex;
 }
