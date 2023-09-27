@@ -6,6 +6,13 @@ const sketchpadHeight = 600;
 let sizeButton = document.querySelector("#set-size");
 let size; 
 let squares;
+
+let colorPicker = document.querySelector("#colorpicker");
+let color = colorPicker.value;
+colorPicker.addEventListener('change', (e) => {
+    color = e.target.value;
+})
+
 sizeButton.addEventListener("click", (e) => {
     if (document.querySelectorAll(".divRow")) {
         let divRows = document.querySelectorAll(".divRow");
@@ -33,25 +40,20 @@ sizeButton.addEventListener("click", (e) => {
     squares.forEach ( (square) => {
         square.addEventListener('mousedown', (e) => {
             let divSquare = e.target;
-            divSquare.setAttribute('style', 'background-color: black;');
+            divSquare.setAttribute('style', `background-color: ${color};`);
         })
     })
 })
 
-console.log(squares);
-
-
 function changeColor(e) {
     let divSquare = e.target;
     if (e.buttons === 1) {
-        divSquare.setAttribute('style', 'background-color: black;');
+        divSquare.setAttribute('style', `background-color: ${color};`);
     }
 }
 
-
-
-let button = document.querySelector('#reset');
-button.addEventListener('click', reset);
+let resetButton = document.querySelector('#reset');
+resetButton.addEventListener('click', reset);
 
 function reset() {
     let divSquares = document.querySelectorAll("div.divColumn");
