@@ -9,7 +9,7 @@
 .sketchpad {
     width: 600px;
     height: 600px;
-    border: 30px solid red; 
+    border: 30px solid #72b37e; 
     border-radius: 20px;
     box-shadow: 5px 5px 5px lightgray;
 }
@@ -26,5 +26,15 @@
 .buttons {
     display: flex; 
     gap: 10px; 
-    margin: 10px; 
+    margin: 10px;
+}
+
+button {
+    border-radius: 10px; 
+    background-color: lightseagreen;
+    color: white;
+}
+
+h1 {
+    font-family:'Courier New', Courier, monospace;
 }

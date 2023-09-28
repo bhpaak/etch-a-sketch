@@ -60,7 +60,16 @@ colorPicker.addEventListener('change', (e) => {
         square.addEventListener('mousedown', clickColor);
     })
 })
-
+colorPicker.addEventListener('click', (e) => {
+    color = e.target.value;
+    squares = document.querySelectorAll(".divColumn");
+    squares.forEach( (square) => {
+        square.removeEventListener('pointerover', changeRainbow);
+        square.removeEventListener('mousedown', clickRainbow);
+        square.addEventListener('pointerover', changeColor);
+        square.addEventListener('mousedown', clickColor);
+    })
+})
 
 
 let resetButton = document.querySelector('#reset');
