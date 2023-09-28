@@ -7,11 +7,7 @@ let sizeButton = document.querySelector("#set-size");
 let size; 
 let squares;
 
-let colorPicker = document.querySelector("#colorpicker");
-let color = colorPicker.value;
-colorPicker.addEventListener('change', (e) => {
-    color = e.target.value;
-})
+
 
 sizeButton.addEventListener("click", (e) => {
     if (document.querySelectorAll(".divRow")) {
@@ -36,12 +32,7 @@ sizeButton.addEventListener("click", (e) => {
     squares = document.querySelectorAll(".divColumn");
     squares.forEach( (square) => {
         square.addEventListener('pointerover', changeColor);
-    })
-    squares.forEach ( (square) => {
-        square.addEventListener('mousedown', (e) => {
-            let divSquare = e.target;
-            divSquare.setAttribute('style', `background-color: ${color};`);
-        })
+        square.addEventListener('mousedown', clickColor);
     })
 })
 
@@ -52,6 +43,26 @@ function changeColor(e) {
     }
 }
 
+function clickColor(e) {
+    let divSquare = e.target;
+    divSquare.setAttribute('style', `background-color: ${color};`);
+}
+
+let colorPicker = document.querySelector("#colorpicker");
+let color = colorPicker.value;
+colorPicker.addEventListener('change', (e) => {
+    color = e.target.value;
+    squares = document.querySelectorAll(".divColumn");
+    squares.forEach( (square) => {
+        square.removeEventListener('pointerover', changeRainbow);
+        square.removeEventListener('mousedown', clickRainbow);
+        square.addEventListener('pointerover', changeColor);
+        square.addEventListener('mousedown', clickColor);
+    })
+})
+
+
+
 let resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', reset);
 
@@ -60,4 +71,34 @@ function reset() {
     divSquares.forEach( (divSquare) => {
         divSquare.setAttribute('style', 'background-color: white;')
     })
+}
+
+let rainbowButton = document.querySelector("#rainbow-mode");
+rainbowButton.addEventListener("click", (e) => {
+    squares = document.querySelectorAll(".divColumn");
+    squares.forEach( (square) => {
+        square.removeEventListener('pointerover', changeColor);
+        square.removeEventListener('mousedown', clickColor);
+        square.addEventListener('pointerover', changeRainbow);
+        square.addEventListener('mousedown', clickRainbow);
+    })
+})
+
+function makeRainbow() {
+    let red = Math.floor(Math.random() * 256);
+    let green = Math.floor(Math.random() * 256);
+    let blue = Math.floor(Math.random() * 256);
+    return `rgb(${red}, ${green}, ${blue})`; 
+}
+
+function changeRainbow(e) {
+    let divSquare = e.target;
+    if (e.buttons === 1) {
+        divSquare.setAttribute('style', `background-color: ${makeRainbow()};`);
+    }
+}
+
+function clickRainbow(e) {
+    let divSquare = e.target;
+    divSquare.setAttribute('style', `background-color: ${makeRainbow()};`);
 }
